@@ -1,0 +1,15 @@
+// Define la entidad para el juego
+entity Juego {
+  nombre String,
+  descripcion String,
+  observaciones String,
+  plataforma String,
+  fechaFin LocalDate,
+  fechaInicio LocalDate,
+  estado String
+}
+
+service all with serviceImpl
+
+paginate all with paginationType = infinite-scroll and serviceImpl
+

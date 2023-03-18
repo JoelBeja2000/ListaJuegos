@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.listajuegos.myapp",
+      "nativeLanguage": "es"
+    },
+    "jhipsterVersion": "6.0.0",
+    "applicationType": "monolith",
+    "baseName": "listajuegos",
+    "packageName": "com.listajuegos.myapp",
+    "packageFolder": "com/listajuegos/myapp",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "NTlmMjFjYWVjYTM0NTAxMGVjZGMyNjM3OWNlOTg5NDRjMjc3YTUxN2RkY2QxZGI5ZjkxYTEyZTY0MDEwNDVkYWJiN2RmZTgyNGU3MzFkMzRlMjMwMTIxOTJiYjE0Yjg3M2Q5YjRmNmZmNmYyMDg5NTJjYTg5Y2E2YjJlNDliMzA=",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "es",
+    "languages": ["es"]
+  }
+}
