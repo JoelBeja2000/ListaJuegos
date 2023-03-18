@@ -10,6 +10,3 @@ entity Juego {
 }
 
 service all with serviceImpl
-
-paginate all with paginationType = infinite-scroll and serviceImpl
-
