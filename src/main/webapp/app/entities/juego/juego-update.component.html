@@ -25,18 +25,11 @@
                            formControlName="observaciones"/>
                 </div>
                 <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="listajuegosApp.juego.plataforma" for="field_plataforma">Plataforma</label>
-                    <ng-select
-                      class="form-control"
-                      formControlName="plataforma"
-                      [items]="plataformas"
-                      bindValue="value"
-                      [virtualScroll]="true"
-                      placeholder="Selecciona una plataforma"
-                      [searchable]="true"
-                    >
-                    </ng-select>
-                  </div>
+                    <label class="form-control-label" jhiTranslate="listajuegosApp.juego.plataforma" for="field_plataforma">plataforma</label>
+                    <select class="form-control" name="plataforma" id="plataforma" formControlName="plataforma">
+                        <option *ngFor="let plataforma of plataformas" [value]="plataforma">{{plataforma}}</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="listajuegosApp.juego.fechaFin" for="field_fechaFin">Fecha Fin</label>
                     <div class="input-group">
