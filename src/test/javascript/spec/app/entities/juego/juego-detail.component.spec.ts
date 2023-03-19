@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { ListajuegosTestModule } from '../../../test.module';
-import { JuegoDetailComponent } from 'app/entities/juego/juego-detail.component';
+import { JuegoDetailComponent } from 'app/entities/juego/delete/juego-detail.component';
 import { Juego } from 'app/shared/model/juego.model';
 
 describe('Component Tests', () => {

@@ -5,8 +5,7 @@ import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstra
 import { JhiEventManager } from 'ng-jhipster';
 
 import { IJuego } from 'app/shared/model/juego.model';
-import { JuegoService } from './juego.service';
-
+import { JuegoService } from '../juego.service';
 @Component({
   selector: 'jhi-juego-delete-dialog',
   templateUrl: './juego-delete-dialog.component.html'

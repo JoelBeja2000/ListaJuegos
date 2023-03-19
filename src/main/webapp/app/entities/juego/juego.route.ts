@@ -7,10 +7,11 @@ import { filter, map } from 'rxjs/operators';
 import { Juego } from 'app/shared/model/juego.model';
 import { JuegoService } from './juego.service';
 import { JuegoComponent } from './juego.component';
-import { JuegoDetailComponent } from './juego-detail.component';
-import { JuegoUpdateComponent } from './juego-update.component';
-import { JuegoDeletePopupComponent } from './juego-delete-dialog.component';
+
 import { IJuego } from 'app/shared/model/juego.model';
+import { JuegoDetailComponent } from './detail/juego-detail.component';
+import { JuegoUpdateComponent } from './update/juego-update.component';
+import { JuegoDeletePopupComponent } from './delete/juego-delete-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class JuegoResolve implements Resolve<IJuego> {
