@@ -7,35 +7,86 @@
             Create new Juego
             </span>
         </button>
+
+        <div style="max-width: 500px;">
+          
+          <div style="display: inline-block; margin: 10px">
+
+            <button type="submit" class="btn btn-danger btn-sm" (click)="changeEstado('Pendiente'); mostrarSelect = false" style="display: inline-block;margin-right: 10px;">
+              <fa-icon [icon]="'pencil-alt'"></fa-icon>
+              <span class="d-none d-md-inline">Pendientes</span>
+            </button>
+            
+            <button type="submit" class="btn btn-primary btn-sm" (click)="changeEstado('En proceso'); mostrarSelect = false" style="display: inline-block;margin-right: 10px;">
+              <fa-icon [icon]="'pencil-alt'"></fa-icon>
+              <span class="d-none d-md-inline">En proceso</span>
+            </button>
+          
+            <button type="submit" class="btn btn-info btn-sm" (click)="changeEstado('Completado'); mostrarSelect = true" style="display: inline-block;margin-right: 10px;">
+              <fa-icon [icon]="'pencil-alt'"></fa-icon>
+              <span class="d-none d-md-inline">Completados</span>
+            </button>
+          
+          </div>
+
+          <div class="form-group" *ngIf="mostrarSelect"  style="display: inline-block;">
+            <label class="form-control-label"></label>
+            <ng-select
+              class="custom-select"
+              [items]="opciones_fechaFIn"
+              bindLabel="fechaFIn"
+              bindValue="fechaFIn"
+              [(ngModel)]="fechaFinSeleccionado"
+              [min]="1900"
+              [max]="2099"
+              [virtualScroll]="true"
+              [selectOnTab]="true"
+              (change)="selectFecha(fechaFinSeleccionado)"
+            >
+              <ng-template ng-option-tmp let-item="item">
+                <b style="font-weight: bold;">{{ item.fechaFIn }}</b>
+              </ng-template>
+            </ng-select>
+          </div>
+        
+          
     </h2>
     <jhi-alert></jhi-alert>
     <br/>
     <div class="table-responsive" *ngIf="juegos">
         <table class="table table-striped">
-            <thead>
+          <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.nombre">Nombre</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.descripcion">Descripcion</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.observaciones">Observaciones</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.plataforma">Plataforma</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.fechaFin">Fecha Fin</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.fechaInicio">Fecha Inicio</span></th>
-            <th><span jhiTranslate="listajuegosApp.juego.estado">Estado</span></th>
-            <th></th>
+              <th><span jhiTranslate="global.field.id">ID</span></th>
+              <th><span jhiTranslate="listajuegosApp.juego.nombre">Nombre</span></th>
+              <th><span jhiTranslate="listajuegosApp.juego.descripcion">Descripcion</span></th>
+              <th><span jhiTranslate="listajuegosApp.juego.observaciones">Observaciones</span></th>
+              <th><span jhiTranslate="listajuegosApp.juego.plataforma">Plataforma</span></th>
+              <ng-container *ngIf="juegos[0]?.estado !== 'Pendiente'">
+                <ng-container *ngIf="juegos[0]?.estado !== 'En Proceso'">
+                    <th><span jhiTranslate="listajuegosApp.juego.fechaFin">Fecha Fin</span></th>
+                  </ng-container>
+                <th><span jhiTranslate="listajuegosApp.juego.fechaInicio">Fecha Inicio</span></th>
+              </ng-container>
+              <th><span jhiTranslate="listajuegosApp.juego.estado">Estado</span></th>
+              <th></th>
             </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let juego of juegos ;trackBy: trackId">
-                <td><a [routerLink]="['/juego', juego.id, 'view' ]">{{juego.id}}</a></td>
-                <td>{{juego.nombre}}</td>
-                <td>{{juego.descripcion}}</td>
-                <td>{{juego.observaciones}}</td>
-                <td>{{juego.plataforma}}</td>
-                <td>{{juego.fechaFin | date:'mediumDate'}}</td>
+          </thead>
+          <tbody>
+            <tr *ngFor="let juego of juegos; trackBy: trackId">
+              <td><a [routerLink]="['/juego', juego.id, 'view' ]">{{juego.id}}</a></td>
+              <td>{{juego.nombre}}</td>
+              <td>{{juego.descripcion}}</td>
+              <td>{{juego.observaciones}}</td>
+              <td>{{juego.plataforma}}</td>
+              <ng-container *ngIf="juego.estado !== 'Pendiente'">
+                <ng-container *ngIf="juegos[0]?.estado !== 'En Proceso'">
+              <td>{{juego.fechaFin | date:'mediumDate'}}</td>
+            </ng-container>
                 <td>{{juego.fechaInicio | date:'mediumDate'}}</td>
-                <td>{{juego.estado}}</td>
-                <td class="text-right">
+              </ng-container>
+              <td>{{juego.estado}}</td>
+              <td class="text-right"></td>
                     <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/juego', juego.id, 'view' ]"

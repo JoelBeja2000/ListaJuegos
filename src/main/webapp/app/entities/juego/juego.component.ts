@@ -10,12 +10,18 @@ import { JuegoService } from './juego.service';
 
 @Component({
   selector: 'jhi-juego',
-  templateUrl: './juego.component.html'
+  templateUrl: './juego.component.html',
+  styleUrls: ['./juego.component.scss']
 })
 export class JuegoComponent implements OnInit, OnDestroy {
   juegos: IJuego[];
   currentAccount: any;
   eventSubscriber: Subscription;
+  estado: string = '';
+  fechaFin: number;
+  opciones_fechaFIn = [];
+  fechaFinSeleccionado = null;
+  mostrarSelect = false;
 
   constructor(
     protected juegoService: JuegoService,
@@ -26,7 +32,7 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
   loadAll() {
     this.juegoService
-      .query()
+      .query(this.estado, this.fechaFin)
       .pipe(
         filter((res: HttpResponse<IJuego[]>) => res.ok),
         map((res: HttpResponse<IJuego[]>) => res.body)
@@ -39,7 +45,25 @@ export class JuegoComponent implements OnInit, OnDestroy {
       );
   }
 
+  changeEstado(estado: ''): void {
+    this.estado = estado;
+    this.loadAll();
+  }
+
+  selectFecha(fechaFin: number): void {
+    this.fechaFin = fechaFin;
+    this.loadAll();
+  }
+
+  listafechaFIn(fechaFIn_min: number, fechaFIn_max: number) {
+    for (let i = fechaFIn_min; i <= fechaFIn_max; i++) {
+      this.opciones_fechaFIn.push({ fechaFIn: i });
+    }
+  }
+
   ngOnInit() {
+    this.listafechaFIn(1900, 2099);
+    this.estado = 'Completado';
     this.loadAll();
     this.accountService.identity().then(account => {
       this.currentAccount = account;

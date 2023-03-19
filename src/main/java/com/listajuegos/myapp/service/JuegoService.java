@@ -23,7 +23,7 @@ public interface JuegoService {
      *
      * @return the list of entities.
      */
-    List<Juego> findAll();
+    List<Juego> findAll(String estado,Integer fechaFin);
 
 
     /**

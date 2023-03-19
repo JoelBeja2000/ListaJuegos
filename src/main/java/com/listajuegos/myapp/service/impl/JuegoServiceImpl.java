@@ -46,10 +46,15 @@ public class JuegoServiceImpl implements JuegoService {
      */
     @Override
     @Transactional(readOnly = true)
-    public List<Juego> findAll() {
-        log.debug("Request to get all Juegos");
-        return juegoRepository.findAll();
+    public List<Juego> findAll(String estado, Integer fechaFin) {
+        log.debug("Request to get all Juegos with estado: {}", estado);
+        if (estado != null) {
+            return juegoRepository.findByEstado(estado, fechaFin);
+        } else {
+            return juegoRepository.findAll();
+        }
     }
+    
 
 
     /**

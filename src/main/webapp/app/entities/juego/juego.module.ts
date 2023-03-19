@@ -8,11 +8,11 @@ import { JuegoUpdateComponent } from './update/juego-update.component';
 import { JuegoDeleteDialogComponent, JuegoDeletePopupComponent } from './delete/juego-delete-dialog.component';
 import { NgSelectModule } from '@ng-select/ng-select'; // Importe NgSelectModule aquí
 import { ListajuegosSharedModule } from 'app/shared';
-
+import { MatTabsModule } from '@angular/material/tabs';
 const ENTITY_STATES = [...juegoRoute, ...juegoPopupRoute];
 
 @NgModule({
-  imports: [ListajuegosSharedModule, RouterModule.forChild(ENTITY_STATES), NgSelectModule],
+  imports: [ListajuegosSharedModule, RouterModule.forChild(ENTITY_STATES), NgSelectModule, MatTabsModule],
   declarations: [JuegoComponent, JuegoDetailComponent, JuegoUpdateComponent, JuegoDeleteDialogComponent, JuegoDeletePopupComponent],
   entryComponents: [JuegoComponent, JuegoUpdateComponent, JuegoDeleteDialogComponent, JuegoDeletePopupComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],

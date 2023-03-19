@@ -84,9 +84,12 @@ public class JuegoResource {
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of juegos in body.
      */
     @GetMapping("/juegos")
-    public List<Juego> getAllJuegos() {
-        log.debug("REST request to get all Juegos");
-        return juegoService.findAll();
+    public List<Juego> getAllJuegos(
+        @RequestParam(required = false) String estado,
+        @RequestParam(required = false)  Integer fechaFin
+        ) {
+        fechaFin = fechaFin == 0 ? null : fechaFin;
+        return juegoService.findAll(estado, fechaFin);
     }
 
     /**
