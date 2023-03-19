@@ -9,7 +9,8 @@ import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'jhi-juego-update',
-  templateUrl: './juego-update.component.html'
+  templateUrl: './juego-update.component.html',
+  styleUrls: ['./juego-update.component.scss']
 })
 export class JuegoUpdateComponent implements OnInit {
   juego: IJuego;
@@ -42,10 +43,10 @@ export class JuegoUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
-    nombre: [],
-    descripcion: [],
-    observaciones: [],
-    plataforma: [],
+    nombre: ['', Validators.required],
+    descripcion: ['', Validators.required],
+    observaciones: ['', Validators.required],
+    plataforma: ['', Validators.required],
     fechaFin: [],
     fechaInicio: [],
     estado: []
@@ -98,7 +99,7 @@ export class JuegoUpdateComponent implements OnInit {
       plataforma: this.editForm.get(['plataforma']).value,
       fechaFin: this.editForm.get(['fechaFin']).value,
       fechaInicio: this.editForm.get(['fechaInicio']).value,
-      estado: this.editForm.get(['estado']).value
+      estado: this.juego.estado = 'Pendiente'
     };
     return entity;
   }
