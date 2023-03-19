@@ -4,15 +4,10 @@ import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
 
 import { ListajuegosSharedModule } from 'app/shared';
-import {
-  JuegoComponent,
-  JuegoDetailComponent,
-  JuegoUpdateComponent,
-  JuegoDeletePopupComponent,
-  JuegoDeleteDialogComponent,
-  juegoRoute,
-  juegoPopupRoute
-} from './';
+import { JuegoComponent, juegoPopupRoute, juegoRoute } from './';
+import { JuegoDetailComponent } from './detail/juego-detail.component';
+import { JuegoUpdateComponent } from './update/juego-update.component';
+import { JuegoDeleteDialogComponent, JuegoDeletePopupComponent } from './delete/juego-delete-dialog.component';
 
 const ENTITY_STATES = [...juegoRoute, ...juegoPopupRoute];
 

@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import * as moment from 'moment';
 import { IJuego, Juego } from 'app/shared/model/juego.model';
-import { JuegoService } from './juego.service';
+import { JuegoService } from '../juego.service';
 
 @Component({
   selector: 'jhi-juego-update',
