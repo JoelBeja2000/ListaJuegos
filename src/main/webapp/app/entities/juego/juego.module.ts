@@ -2,17 +2,17 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { JhiLanguageService } from 'ng-jhipster';
 import { JhiLanguageHelper } from 'app/core';
-
-import { ListajuegosSharedModule } from 'app/shared';
 import { JuegoComponent, juegoPopupRoute, juegoRoute } from './';
 import { JuegoDetailComponent } from './detail/juego-detail.component';
 import { JuegoUpdateComponent } from './update/juego-update.component';
 import { JuegoDeleteDialogComponent, JuegoDeletePopupComponent } from './delete/juego-delete-dialog.component';
+import { NgSelectModule } from '@ng-select/ng-select'; // Importe NgSelectModule aquí
+import { ListajuegosSharedModule } from 'app/shared';
 
 const ENTITY_STATES = [...juegoRoute, ...juegoPopupRoute];
 
 @NgModule({
-  imports: [ListajuegosSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [ListajuegosSharedModule, RouterModule.forChild(ENTITY_STATES), NgSelectModule],
   declarations: [JuegoComponent, JuegoDetailComponent, JuegoUpdateComponent, JuegoDeleteDialogComponent, JuegoDeletePopupComponent],
   entryComponents: [JuegoComponent, JuegoUpdateComponent, JuegoDeleteDialogComponent, JuegoDeletePopupComponent],
   providers: [{ provide: JhiLanguageService, useClass: JhiLanguageService }],
