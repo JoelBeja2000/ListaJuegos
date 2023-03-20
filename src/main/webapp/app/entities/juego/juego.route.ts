@@ -11,7 +11,8 @@ import { JuegoComponent } from './juego.component';
 import { IJuego } from 'app/shared/model/juego.model';
 import { JuegoDetailComponent } from './detail/juego-detail.component';
 import { JuegoUpdateComponent } from './update/juego-update.component';
-import { JuegoDeletePopupComponent } from './delete/juego-delete-dialog.component';
+import { JuegoDeleteDialogComponent } from './delete/juego-delete-dialog.component';
+import { JuegoCambioEstadoDialogComponent } from './cambio-estados/juego-cambio-estado-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class JuegoResolve implements Resolve<IJuego> {
@@ -74,21 +75,5 @@ export const juegoRoute: Routes = [
       pageTitle: 'listajuegosApp.juego.home.title'
     },
     canActivate: [UserRouteAccessService]
-  }
-];
-
-export const juegoPopupRoute: Routes = [
-  {
-    path: ':id/delete',
-    component: JuegoDeletePopupComponent,
-    resolve: {
-      juego: JuegoResolve
-    },
-    data: {
-      authorities: ['ROLE_USER'],
-      pageTitle: 'listajuegosApp.juego.home.title'
-    },
-    canActivate: [UserRouteAccessService],
-    outlet: 'popup'
   }
 ];

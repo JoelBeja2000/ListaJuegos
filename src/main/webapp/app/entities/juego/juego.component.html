@@ -13,17 +13,14 @@
           <div style="display: inline-block; margin: 10px">
 
             <button type="submit" class="btn btn-danger btn-sm" (click)="changeEstado('Pendiente'); mostrarSelect = false" style="display: inline-block;margin-right: 10px;">
-              <fa-icon [icon]="'pencil-alt'"></fa-icon>
               <span class="d-none d-md-inline">Pendientes</span>
             </button>
             
             <button type="submit" class="btn btn-primary btn-sm" (click)="changeEstado('En proceso'); mostrarSelect = false" style="display: inline-block;margin-right: 10px;">
-              <fa-icon [icon]="'pencil-alt'"></fa-icon>
               <span class="d-none d-md-inline">En proceso</span>
             </button>
           
             <button type="submit" class="btn btn-info btn-sm" (click)="changeEstado('Completado'); mostrarSelect = true" style="display: inline-block;margin-right: 10px;">
-              <fa-icon [icon]="'pencil-alt'"></fa-icon>
               <span class="d-none d-md-inline">Completados</span>
             </button>
           
@@ -87,27 +84,57 @@
               </ng-container>
               <td>{{juego.estado}}</td>
               <td class="text-right"></td>
-                    <div class="btn-group">
+                    <!-- <div class="btn-group">
                         <button type="submit"
                                 [routerLink]="['/juego', juego.id, 'view' ]"
                                 class="btn btn-info btn-sm">
                             <fa-icon [icon]="'eye'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
-                        </button>
+                        </button> -->
                         <button type="submit"
                                 [routerLink]="['/juego', juego.id, 'edit']"
                                 class="btn btn-primary btn-sm">
                             <fa-icon [icon]="'pencil-alt'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
-                                [routerLink]="['/', 'juego', { outlets: { popup: juego.id + '/delete'} }]"
+                        <ng-container *ngIf="juego.estado == 'Pendiente'">
+                        <button type="submit "
+                            (click)="delete(juego)" 
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
                                 class="btn btn-danger btn-sm">
                             <fa-icon [icon]="'times'"></fa-icon>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                         </button>
+                      </ng-container>
+
+                        <ng-container *ngIf="juego.estado !== 'En Proceso' && juego.estado !== 'Completado'">
+                        <button type="submit"
+                          (click)="cambioEstado(juego,'En Proceso')" 
+                            replaceUrl="true"
+                            queryParamsHandling="merge"
+                            class="btn btn-info btn-sm">
+                        <span class="d-none d-md-inline">Empezar</span>
+                    </button>
+                  </ng-container>
+
+                    <ng-container *ngIf="juegos[0]?.estado !== 'Pendiente' && juego.estado !== 'Completado'">
+                    <button type="submit"
+                    (click)="cambioEstado(juego,'Completado')" 
+                      replaceUrl="true"
+                      queryParamsHandling="merge"
+                      class="btn btn-secondary btn-sm">
+                  <span class="d-none d-md-inline">Completar</span>
+              </button>
+            </ng-container>
+
+
+
+
+
+
+
+
                     </div>
                 </td>
             </tr>

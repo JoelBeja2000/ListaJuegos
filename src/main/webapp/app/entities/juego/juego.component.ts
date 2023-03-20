@@ -7,6 +7,9 @@ import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 import { IJuego } from 'app/shared/model/juego.model';
 import { AccountService } from 'app/core';
 import { JuegoService } from './juego.service';
+import { JuegoDeleteDialogComponent } from './delete/juego-delete-dialog.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { JuegoCambioEstadoDialogComponent } from './cambio-estados/juego-cambio-estado-dialog.component';
 
 @Component({
   selector: 'jhi-juego',
@@ -27,7 +30,8 @@ export class JuegoComponent implements OnInit, OnDestroy {
     protected juegoService: JuegoService,
     protected jhiAlertService: JhiAlertService,
     protected eventManager: JhiEventManager,
-    protected accountService: AccountService
+    protected accountService: AccountService,
+    protected modalService: NgbModal
   ) {}
 
   loadAll() {
@@ -77,6 +81,27 @@ export class JuegoComponent implements OnInit, OnDestroy {
 
   trackId(index: number, item: IJuego) {
     return item.id;
+  }
+
+  delete(juego: IJuego): void {
+    const modalRef = this.modalService.open(JuegoDeleteDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.juego = juego;
+    modalRef.result.then(result => {
+      if (result === 'deleted') {
+        this.loadAll();
+      }
+    });
+  }
+
+  cambioEstado(juego: IJuego, estado: ''): void {
+    const modalRef = this.modalService.open(JuegoCambioEstadoDialogComponent, { size: 'lg', backdrop: 'static' });
+    modalRef.componentInstance.estado = estado;
+    modalRef.componentInstance.juego = juego;
+    modalRef.result.then(result => {
+      if (result === 'deleted') {
+        this.loadAll();
+      }
+    });
   }
 
   registerChangeInJuegos() {
