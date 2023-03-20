@@ -16,6 +16,7 @@ export class JuegoCambioEstadoDialogComponent {
   estado: string;
   fechaInicio: Moment = moment();
   fechaFin: Moment = moment();
+  observaciones: string;
   constructor(protected juegoService: JuegoService, public activeModal: NgbActiveModal) {}
 
   cancel(): void {
@@ -26,6 +27,7 @@ export class JuegoCambioEstadoDialogComponent {
     juego.estado = this.estado;
     juego.fechaInicio = this.fechaInicio;
     juego.fechaFin = this.fechaFin;
+    this.observaciones = juego.observaciones;
     this.juegoService.update(juego).subscribe(() => {
       this.activeModal.close('deleted');
     });

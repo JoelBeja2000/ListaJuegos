@@ -54,7 +54,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th><span jhiTranslate="global.field.id">ID</span></th>
+              
               <th><span jhiTranslate="listajuegosApp.juego.nombre">Nombre</span></th>
               <th><span jhiTranslate="listajuegosApp.juego.descripcion">Descripcion</span></th>
               <th><span jhiTranslate="listajuegosApp.juego.observaciones">Observaciones</span></th>
@@ -71,7 +71,7 @@
           </thead>
           <tbody>
             <tr *ngFor="let juego of juegos; trackBy: trackId">
-              <td><a [routerLink]="['/juego', juego.id, 'view' ]">{{juego.id}}</a></td>
+            
               <td>{{juego.nombre}}</td>
               <td>{{juego.descripcion}}</td>
               <td>{{juego.observaciones}}</td>
