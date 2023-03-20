@@ -45,7 +45,7 @@ export class JuegoUpdateComponent implements OnInit {
     id: [],
     nombre: ['', Validators.required],
     descripcion: ['', Validators.required],
-    observaciones: ['', Validators.required],
+    observaciones: [],
     plataforma: ['', Validators.required],
     fechaFin: [],
     fechaInicio: [],
