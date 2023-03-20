@@ -1,0 +1,32 @@
+<form name="deleteForm" (ngSubmit)="cambioEstado(juego)">
+    <div class="modal-header">
+        <h4 class="modal-title"><span *ngIf="juego.estado == 'Pendiente'">¿Seguro que lo quieres empezar?</span> <span *ngIf="juego.estado == 'En Proceso'">¿Seguro que lo quieres Completar?</span></h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="cancel()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+
+        <div *ngIf="juego.estado == 'Pendiente'">
+        <p id="jhi-delete-juego-heading">¿En que fecha lo has empezado?</p>
+        <input id="field_fechaFin" type="date" class="form-control" name="fechaFin" ngbDatepicker  #fechaFinDp="ngbDatepicker" [(ngModel)]="fechaFin"/>
+        </div>
+
+        <div *ngIf="juego.estado == 'En Proceso'">
+            <p id="jhi-delete-juego-heading">¿En que fecha lo has terminado?</p>
+            <input id="field_fechaFin" type="date" class="form-control" name="fechaFin" ngbDatepicker  #fechaFinDp="ngbDatepicker" [(ngModel)]="fechaFin"/>
+            </div>
+          
+
+
+
+    
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancel()">
+            <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button id="jhi-confirm-delete-juego" type="submit" class="btn btn-info">
+            <fa-icon [icon]="'times'"></fa-icon>&nbsp; <span *ngIf="juego.estado == 'Pendiente'">Empezar</span> <span *ngIf="juego.estado == 'En Proceso'">Completar</span>
+        </button>
+    </div>
+</form>

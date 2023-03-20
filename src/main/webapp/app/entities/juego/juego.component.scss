@@ -1,0 +1,35 @@
+.custom-select {
+  /* Establece el fondo y el borde */
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  /* Ajusta el ancho y la altura */
+  width: 97px;
+  /* Ajusta el borde al hacer foco */
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  /* Establece la apariencia del texto y del ícono */
+  color: #495057;
+  line-height: 1.5;
+  font-weight: bold;
+  font-size: 15px;
+  transform: scale(1);
+  transform-origin: left center;
+}
+
+.custom-select-container {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+}
+
+.custom-select:focus {
+  /* Establece el borde al hacer foco */
+  border-color: #80bdff;
+}
+
+::ng-deep .ng-dropdown-panel {
+  top: 45px;
+  background-color: #fff;
+  border-radius: 5px; /* ajusta el valor del radio según tus necesidades */
+  border: 1px solid #ced4da; /* ajusta el valor del color según tus necesidades */
+}

@@ -6,21 +6,27 @@ import { JhiEventManager } from 'ng-jhipster';
 
 import { IJuego } from 'app/shared/model/juego.model';
 import { JuegoService } from '../juego.service';
-@Component({
-  selector: 'jhi-juego-delete-dialog',
-  templateUrl: './juego-delete-dialog.component.html'
-})
-export class JuegoDeleteDialogComponent {
-  juego?: IJuego;
+import moment, { Moment } from 'moment';
 
+@Component({
+  selector: 'jhi-juego-cambio-estado-dialog',
+  templateUrl: './juego-cambio-estado-dialog.component.html'
+})
+export class JuegoCambioEstadoDialogComponent {
+  estado: string;
+  fechaInicio: Moment = moment();
+  fechaFin: Moment = moment();
   constructor(protected juegoService: JuegoService, public activeModal: NgbActiveModal) {}
 
   cancel(): void {
     this.activeModal.dismiss();
   }
 
-  confirmDelete(id: number): void {
-    this.juegoService.delete(id).subscribe(() => {
+  cambioEstado(juego: IJuego): void {
+    juego.estado = this.estado;
+    juego.fechaInicio = this.fechaInicio;
+    juego.fechaFin = this.fechaFin;
+    this.juegoService.update(juego).subscribe(() => {
       this.activeModal.close('deleted');
     });
   }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import * as moment from 'moment';
+import moment from 'moment';
 import { DATE_FORMAT } from 'app/shared/constants/input.constants';
 import { map } from 'rxjs/operators';
 
@@ -38,8 +38,9 @@ export class JuegoService {
       .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
   }
 
-  query(req?: any): Observable<EntityArrayResponseType> {
-    const options = createRequestOption(req);
+  query(estado?: string, fechaFin?: number, req?: any): Observable<EntityArrayResponseType> {
+    const fechaFinValue = fechaFin ? fechaFin : 0; // O cualquier otro valor predeterminado
+    const options = createRequestOption({ req, estado, fechaFin: fechaFinValue });
     return this.http
       .get<IJuego[]>(this.resourceUrl, { params: options, observe: 'response' })
       .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
